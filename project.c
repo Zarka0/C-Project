@@ -1,173 +1,338 @@
 #include<stdio.h>
-
-int  printMenu()
-{
-
+#include<stdlib.h>
+#include<ctype.h>
 
 
+void mainmenu();
+void order();
+void food();
+void viewOrder();
+void details();
+void editOrder(float,char[]);
+
+int main(){
+    mainmenu();
+    return 0;
+}
+int quantity;
+float total;
 int response;
-system("Color 0D");
-printf("                                     * Welcome to 14th Avenue *\n ");
+char name[20];
 
-printf("Make your selection from the menu below:\n\n");
-printf("	 1. Lentil soup			                    Rs. 250\n");
-printf("	 2. Avocado toast with fried egg		    Rs. 350\n");
-printf("	 3. Turkey Wrap				            Rs. 400\n");
-printf("	 4. Cottage cheese with steamed broccoli            Rs. 279\n");
-printf("	 5. Chicken Fried Rice				    Rs. 300\n");
-printf("	 6. Lamb Chops		                            Rs. 400\n");
-printf("	 7. Barbecue                                        Rs. 450\n");
-printf("	 8. Lasagna 		                            Rs. 380\n");
-printf("	 9. Mutton Biryani		                    Rs. 500\n");
-printf("	 10.Chicken Biryani		                    Rs. 480\n");
-printf("	 11.Peas Pulao 		                            Rs. 415\n");
-printf("	 12.Blueberry Cheesecake 		            Rs. 280\n");
-printf("	 13.Mushroom Pizza 		                    Rs. 295\n");
-printf("	 14.Cheese fries 		                    Rs. 185\n");
-printf("	 15.Shawarma 		                            Rs. 315\n");
-printf("	 16.Butter Chicken 		                    Rs. 299\n");
-printf("	 17.Chicken Tikka			            Rs. 280\n\n");
+void mainmenu(){
+    system("cls");
+    printf("======================================================================\n");
+    printf("\t\t FOOD DELIVERY SERVICE\n");
+    printf("\t1.GO TO THE ORDER PAGE\n\t2.EXIT\n\tENTER YOUR CHOICE\n");
+    printf("=======================================================================\n");
+    printf("\n\t>>");
 
-printf(" *\n\n");
-printf("Select 1 to 17 ---> \n\n");
-scanf( "%d", &response);
-return response;
+    int choice;
+    scanf("%d", &choice);
+    if(choice==1){
+        order();
+    }
+
+    else if(choice==2){
+        system("cls");
+        printf("=======================================================================\n");
+        printf("\t\t\t\t\tTHANK YOU\n");
+        printf("=======================================================================\n");
+        exit(0);
+    }
 }
 
-int main()
+void order(){
+    system("cls");
+    printf("=======================================================================\n");
+    printf("\tCHOOSE WHAT YOU WANT TO DO\n");
+    printf("\t1.ORDER FOOD\n\t2.VIEW ORDER\n\t3.BACK TO THE MAIN MENU");
+    printf("\tENTER YOUR CHOICE:\n");
+    printf("=======================================================================\n");
+    printf("\n\t>>");
 
-{
-  int s, choice;
-  float p, x;
-  int response;
+    int choice;
+    scanf("%d", &choice);
 
+    if(choice==1){
+        system("cls");
+        food();
+    }
 
-  response = printMenu();
+    else if(choice==2){
+        system("cls");
+        viewOrder();
+    }
 
-  printf("How many orders of item number %d would you like?\n", response);
-  scanf("%d", &s);
+    else if(choice==3){
+        system("cls");
+        mainmenu();
+    }
 
-  switch(response)
-{
-   case 1:
-   printf("You have selected %d order(s) of Lentil Soup\n", s);
-   p=s *250;
-   printf("Your total is Rs%.2f\n\n", p);
-   break;
-
-   case 2:
-   printf("You have selected %d order(s) of Avocado toast with fried egg\n", s);
-   p=s*350;
-   printf("Your total is  Rs.%.2f\n\n", p);
-   break;
-
-   case 3:
-   printf("You have selected %d order(s) of Turkey wrap\n", s);
-   p=s*400;
-   printf("Your total is Rs.%.2f\n\n", p);
-   break;
-
-   case 4:
-   printf("You have selected %d order(s) of Cottage cheese with steamed broccoli\n", s);
-   p=s*279;
-   printf("Your total is Rs.%.2f\n\n", p);
-   break;
-
-   case 5:
-   printf("You have selected %d order(s) Chicken Fried Rice\n", s);
-   p=s*300;
-   printf("Your total is Rs.%.2f\n\n", p);
-   break;
-
-   case 6:
-   printf("You have selected %d order(s) Lamb Chops\n", s);
-   p=s *400;
-   printf("Your total is Rs.%.2f\n\n", p);
-   break;
-
-
-   case 7:
-   printf("You have selected %d order(s) Barbecue\n", s);
-   p=s *450;
-   printf("Your total is Rs.%.2f\n\n", p);
-   break;
-
-   case 8:
-   printf("You have selected %d order(s) Lasagna\n", s);
-   p=s *380;
-   printf("Your total is Rs.%.2f\n\n", p);
-    break;
-
-    case 9:
-   printf("You have selected %d order(s) Mutton Biryani\n", s);
-   p=s *500;
-   printf("Your total is Rs.%.2f\n\n", p);
-    break;
-
-    case 10:
-   printf("You have selected %d order(s) Chicken Biryani\n", s);
-   p=s *480;
-   printf("Your total is Rs.%.2f\n\n", p);
-    break;
-
-    case 11:
-   printf("You have selected %d order(s) Peas Pulao\n", s);
-   p=s *415;
-   printf("Your total is Rs.%.2f\n\n", p);
-    break;
-
-    case 12:
-   printf("You have selected %d order(s) Blueberry Cheesecake\n", s);
-   p=s *280;
-   printf("Your total is Rs.%.2f\n\n", p);
-     break;
-
-    case 13:
-   printf("You have selected %d order(s) Mushroom Pizza\n", s);
-   p=s *295;
-   printf("Your total is Rs.%.2f\n\n", p);
-     break;
-
-    case 14:
-   printf("You have selected %d order(s) Cheese fries\n", s);
-   p=s *185;
-   printf("Your total is Rs.%.2f\n\n", p);
-     break;
-
-    case 15:
-   printf("You have selected %d order(s)Shawarma\n", s);
-   p=s *315;
-   printf("Your total is Rs.%.2f\n\n", p);
-   break;
-
-    case 16:
-   printf("You have selected %d order(s) Butter Chicken\n", s);
-   p=s *299;
-   printf("Your total is Rs.%.2f\n\n", p);
-   break;
-
-   case 17:
-   printf("You have selected %d order(s) Chicken Tikka\n", s);
-   p=s *280;
-   printf("Your total is Rs.%.2f\n\n", p);
-   break;
-   default:
-   break;
-
-}
-x=p*1.13;
-printf("Your total (including GST and delivery charges) is Rs.%.2f\n\n",x);
- printf("Do you want to confirm your order? Press 1 for yes and 0 for no:");
-  scanf("%d", &choice);
-  if(choice==1){
-
-printf("Thank you for ordering from 14th Avenue!\nYour order will be delivered within 30 minutes\n");
-printf("Have a nice day :)");
-  }
-
-else{
-    printf("Order canceled :( ");
-
-}
+    else{
+        printf("\n\tINVALID INPUT\n\n");
+        order();
+    }
 }
 
+void food(){
+
+    printf("=======================================================================\n");
+    printf("\tWelcome to 14th Avenue *\n ");
+    printf("Make your selection from the menu below:\n\n");
+    printf("\t1. Lentil soup\t\tRs. 250\n");
+    printf("\t2. Avocado toast with fried egg\t\tRs. 350\n");
+    printf("\t3. Turkey Wrap\t\tRs. 400\n");
+    printf("\t4. Cottage cheese with steamed broccoli\t\tRs. 279\n");
+    printf("\t5. Chicken Fried Rice	\t\tRs. 300\n");
+    printf("\t6. Lamb Chops\t\tRs. 400\n");
+    printf("\t7. Barbecue\t\tRs. 450\n");
+    printf("\t8. Lasagna\t\tRs. 380\n");
+    printf("\t9. Mutton Biryani\t\tRs. 500\n");
+    printf("\t10.Chicken Biryani\t\tRs. 480\n");
+    printf("\t11.Peas Pulao\t\tRs. 415\n");
+    printf("\t12.Blueberry Cheesecake\t\tRs. 280\n");
+    printf("\t13.Mushroom Pizza\t\tRs. 295\n");
+    printf("\t14.Cheese fries\t\tRs. 185\n");
+    printf("\t15.Shawarma\t\tRs. 315\n");
+    printf("\t16.Butter Chicken\t\tRs. 299\n");
+    printf("\t17.Chicken Tikka\t\tRs. 280\n\n");
+    printf("\t18.BACK TO THE MAIN MENU\n");
+    printf("=======================================================================\n");
+
+    printf("\n\nINPUT YOUR ORDER:");
+    scanf("%d", &response);
+
+    if (response==1){
+        printf("QUANTITY OF SELECTED ORDER: ");
+        scanf("%d", &quantity);
+        printf("You have selected %d order(s) of Lentil Soup\n", quantity);
+        total= (quantity *250);
+        printf("\nYOUR TOTAL IS %2.f\n\n", total);
+        details();
+    }
+
+    if (response==2){
+        printf("QUANTITY OF SELECTED ORDER: ");
+        scanf("%d", &quantity);
+        printf("You have selected %d order(s) of Avocado toast with fried egg\n", quantity);
+        total=(quantity*350);
+        printf("\nYOUR TOTAL IS %.2f\n\n", total);
+        details();
+
+    }
+
+    if (response==3){
+        printf("QUANTITY OF SELECTED ORDER: ");
+        scanf("%d", &quantity);
+        printf("You have selected %d order(s) of Turkey wrap\n", quantity);
+        total=(quantity*400);
+        printf("\nYOUR TOTAL IS %.2f\n\n", total);
+        details();
+
+    }
+
+    if (response==4){
+        printf("QUANTITY OF SELECTED ORDER: ");
+        scanf("%d", &quantity);
+        printf("You have selected %d order(s) of Cottage cheese with steamed broccoli\n", quantity);
+        total=quantity*279;
+        printf("\nYOUR TOTAL IS %.2f\n\n", total);
+        details();
+
+    }
+
+    if (response==5){
+        printf("QUANTITY OF SELECTED ORDER: ");
+        scanf("%d", &quantity);
+        printf("You have selected %d order(s) Chicken Fried Rice\n", quantity);
+        total=quantity*300;
+        printf("\nYOUR TOTAL IS %.2f\n\n", total);
+        details();
+
+    }
+
+    if (response==6){
+        printf("QUANTITY OF SELECTED ORDER: ");
+        scanf("%d", &quantity);
+        printf("You have selected %d order(s) Lamb Chops\n", quantity);
+        total= (quantity *400);
+        printf("\nYOUR TOTAL IS %.2f\n\n", total);
+        details();
+
+    }
+
+     if (response==7){
+         printf("QUANTITY OF SELECTED ORDER: ");
+        scanf("%d", &quantity);
+         printf("You have selected %d order(s) Barbecue\n", quantity);
+        total=total+ (quantity *450);
+        printf("\nYOUR TOTAL IS %.2f\n\n", total);
+        details();
+
+        }
+
+        if (response==8){
+            printf("QUANTITY OF SELECTED ORDER: ");
+        scanf("%d", &quantity);
+        printf("You have selected %d order(s) Lasagna\n", quantity);
+        total=(quantity*380);
+        printf("\nYOUR TOTAL IS %.2f\n\n", total);
+        details();
+
+        }
+
+        if (response==9){
+            printf("QUANTITY OF SELECTED ORDER: ");
+        scanf("%d", &quantity);
+        printf("You have selected %d order(s) Mutton Biryani\n", quantity);
+        total=total+ (quantity *500);
+        printf("\nYOUR TOTAL IS %.2f\n\n", total);
+        details();
+
+        }
+
+        if (response==10){
+        printf("QUANTITY OF SELECTED ORDER: ");
+        scanf("%d", &quantity);
+        printf("You have selected %d order(s) Chicken Biryani\n", quantity);
+        total=(quantity *480);
+        printf("\nYOUR TOTAL IS %.2f\n\n", total);
+        details();
+
+        }
+
+        if (response==11){
+        printf("QUANTITY OF SELECTED ORDER: ");
+        scanf("%d", &quantity);
+        printf("You have selected %d order(s) Blueberry Cheesecake\n", quantity);
+        total=(quantity *280);
+        printf("\nYOUR TOTAL IS %.2f\n\n", total);
+        details();
+
+        }
+
+        if (response==12){
+        printf("QUANTITY OF SELECTED ORDER: ");
+        scanf("%d", &quantity);
+        printf("You have selected %d order(s) Peas Pulao\n", quantity);
+        total= (quantity *415);
+        printf("\n\tYOUR TOTAL IS %.2f\n\n", total);
+        details();
+
+        }
+
+
+        if (response==13){
+        printf("QUANTITY OF SELECTED ORDER: ");
+        scanf("%d", &quantity);
+        printf("You have selected %d order(s) Mushroom Pizza\n", quantity);
+        total= (quantity *295);
+        printf("\nYOUR TOTAL IS %.2f\n\n", total);
+        details();
+
+        }
+
+        if (response==14){
+        printf("QUANTITY OF SELECTED ORDER: ");
+        scanf("%d", &quantity);
+        printf("You have selected %d order(s) Cheese fries\n", quantity);
+        total= (quantity *185);
+        printf("\nYOUR TOTAL IS %.2f\n\n", total);
+        details();
+
+        }
+
+        if (response==15){
+        printf("QUANTITY OF SELECTED ORDER: ");
+        scanf("%d", &quantity);
+        printf("You have selected %d order(s)Shawarma\n", quantity);
+        total=total+ (quantity *315);
+        printf("\nYOUR TOTAL IS %.2f\n\n", total);
+        details();
+
+        }
+
+        if (response==16){
+        printf("QUANTITY OF SELECTED ORDER: ");
+        scanf("%d", &quantity);
+        printf("You have selected %d order(s) Butter Chicken\n", quantity);
+        total= (quantity *299);
+        printf("\nYOUR TOTAL IS %.2f\n\n", total);
+        details();
+
+        }
+
+        if (response==17){
+        printf("QUANTITY OF SELECTED ORDER: ");
+        scanf("%d", &quantity);
+        printf("You have selected %d order(s) Chicken Tikka\n", quantity);
+        total= (quantity *280);
+        printf("\nYOUR TOTAL IS %.2f\n\n", total);
+        details();
+        }
+
+        else if(response==18){
+            system("cls");
+            order();
+        }
+}
+
+void details(){
+    printf("\nINPUT CUSTOMER DETAILS: \n");
+    printf("Enter Name: ");
+    scanf("%s", &name);
+    if (getchar())
+    system("cls");
+
+    editOrder(total, name);
+
+    printf("=======================================================================\n");
+    printf("\t\tYOUR ORDER DETAILS ARE: \n");
+    printf("\t\tCUSTOMER NAME: %s\n\t\tYOUR ORDER TOTAL IS: %.2frs\n", name, total);
+    printf("\t\tYOUR SELECTED ORDER IS : %d\n", response);
+    printf("\t\tPress any key to go back to main menu.\n");
+    printf("=======================================================================\n");
+    if(getchar()){
+    system("cls");
+    mainmenu();
+    }
+
+}
+
+void viewOrder(){
+    system("cls");
+    FILE *f;
+    f = fopen("order.txt", "r");
+
+    if (f==NULL){
+        perror("Error while opening the file.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    else {do
+        {
+            char name = fgetc(f);
+
+            if (feof(f))
+                break ;
+
+            printf("%c", name);
+        }  while(1);
+        getchar();
+    }
+
+    printf("\t\t*Press any key to go back*\n");
+    if(getchar()){
+    system("cls");
+    mainmenu();
+    }
+}
+
+void editOrder(float t, char fnm[20] ){
+    system("cls");
+    FILE *f;
+    f = fopen("order.txt", "a");
+    fprintf(f, "Customer Name: %s\nGrand Total: %.2frs\nSelected Order: %i\n\n\n", fnm, t, response);
+    fclose(f);
+}
